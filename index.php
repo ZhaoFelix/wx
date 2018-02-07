@@ -1,5 +1,5 @@
 <?php
-getInfo();
+
 function getInfo(){
     //scope=snsapi_base 实例
     $appid = 'wx6d9718791b8611c4';
