@@ -1,5 +1,7 @@
 <?php
-var_dump(getUserInfo());
+include_once 'include/template.php';
+$d = getUserInfo();
+insert_info($d);
 
 function  getUserInfo(){
     $appid = "wx6d9718791b8611c4";
@@ -27,4 +29,31 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 $output = curl_exec($ch);
 curl_close($ch);
 return json_decode($output, true);
+}
+
+//将获取的数据插入数据库
+
+function insert_info($arr){
+    //返回uid
+    /*
+Array ( [subscribe] => 1 [openid] => o3OoQ1satUuQgUP9af8GN3Vv1i-E 
+     * [nickname] => Felix [sex] => 1 
+     * [language] => zh_CN [city] => 
+     * [province] => 上海 [country] => 中国 
+     * [headimgurl] => http://wx.qlogo.cn/mmopen/6saOI3DUwyyEoIH5mIcjk2duzMvC02lvM6sk4emQ3psoSZ2kNFKbgb193fJwSchlnCQBjibE1cNHe0Pud68IMrx74OZib8db0c/132 
+     * [subscribe_time] => 1517068847 
+     * [remark] => [groupid] => 0 
+     * [tagid_list] => Array ( ) )
+     *      */
+    
+    $openid = $arr['openid'];
+    $data = getSingleData("select * from UserInfo where OpenId='".$openid."'");
+    if(!isset($data)){
+        //不存在
+        var_dump($openid);
+    }
+    else {
+        //已存在
+        var_dump("Test");
+    }
 }
