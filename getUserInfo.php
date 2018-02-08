@@ -1,7 +1,6 @@
 <?php
-include_once 'include/template.php';
+
 $d = getUserInfo();
-var_dump($d);
 insert_info($d);
 
 function  getUserInfo(){
