@@ -48,6 +48,7 @@ Array ( [subscribe] => 1 [openid] => o3OoQ1satUuQgUP9af8GN3Vv1i-E
     
     $openid = $arr['openid'];
     $data = getSingleData("select * from UserInfo where OpenId='".$openid."'");
+    var_dump($data);
     if(!isset($data)){
         //不存在
         var_dump($openid);
